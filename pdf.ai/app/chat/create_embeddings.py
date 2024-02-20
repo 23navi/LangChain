@@ -1,5 +1,6 @@
 from langchain.document_loaders import PyPDFLoader  ## Gives an easy way to load PDF and extract data from it
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from app.chat.vector_stores.pinecone import vector_store
 
 
 def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
@@ -28,6 +29,16 @@ def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
 
     documents = loader.load_and_split(text_splitter)
 
+
+    for doc in documents:
+        doc.metadata={
+            "page":doc.metadata["page"],
+            "text":doc.page_content,
+            "pdf_id":pdf_id
+        }
+
     print(documents)
+
+    vector_store.add_documents(documents)
 
     pass
