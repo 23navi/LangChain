@@ -14,27 +14,6 @@ flask --app app.web init-db
 
 ```
 
-## Using Venv [Optional]
-
-These instructions are included if you wish to use venv to manage your evironment and dependencies instead of Pipenv.
-
-```
-# Create the venv virtual environment
-python -m venv .venv
-
-# On MacOS, WSL, Linux
-source .venv/bin/activate
-
-# On Windows
-.\.venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Initialize the database
-flask --app app.web init-db
-```
-
 # Running the app [Pipenv]
 
 There are three separate processes that need to be running for the app to work: the server, the worker, and Redis.
